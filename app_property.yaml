@@ -1,0 +1,4 @@
+db:
+  url: 'postgresql://{user}:{password}@localhost:5432/aft_portal'
+  user: 'aft_portal_admin'
+  pass: '4321'
