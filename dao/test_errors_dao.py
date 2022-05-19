@@ -10,11 +10,10 @@ class TestErrorsDao:
 
 
     def get_failed_tests_logs(self):
-        #todo change to report_test_runs
         log.info('collect failed tests from db')
         sql_upsert = '''
             with failed_tests as (
-                select * from portal.vi_report_test_runs rtr
+                select * from portal.report_test_runs rtr
                     where rtr.last_status= 'f'
             ),
             steps_with_logs as (
