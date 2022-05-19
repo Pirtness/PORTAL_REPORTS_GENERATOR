@@ -5,6 +5,7 @@ from utils.properties import *
 import json
 import logging
 from .test_errors_dao import TestErrorsDao
+from .tests_dao import TestDao
 
 log = logging.getLogger(__name__)
 
@@ -17,10 +18,26 @@ def _get_sql_client() -> SqlClient:
         _sql_client = SqlClient(connection_string=DATABASE_URL, user=DATABASE_USER, password=DATABASE_PASS)
     return _sql_client
 
+
 test_error_dao: TestErrorsDao = TestErrorsDao(_get_sql_client())
+test_dao: TestDao = TestDao(_get_sql_client())
+
+
+def generate_report():
+    test_dao.generate_report()
+
+
+def generate_report_test_runs():
+    test_dao.generate_report_test_runs()
+
+
+def generate_review():
+    test_dao.generate_review()
+
 
 def begin_transaction():
     _get_sql_client().get_client().begin()
+
 
 def commit():
     _get_sql_client().get_client().commit()
